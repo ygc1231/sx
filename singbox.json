@@ -74,7 +74,7 @@
     { "tag": "🍎 Apple", "type": "selector", "outbounds": ["🎯 全球直连", "♻️ 自动选择"] },
     { "tag": "🐸 手动切换", "type": "selector", "outbounds": ["{all}"]},
     { "tag": "🐟 漏网之鱼", "type": "selector", "outbounds": ["🚀 节点选择", "🎯 全球直连", "🐸 手动切换"] },
-    { "tag": "GLOBAL", "type": "selector", "outbounds": ["♻️ 自动选择", "🎯 全球直连", "🐸 手动切换"] },
+    { "tag": "GLOBAL", "type": "selector", "outbounds": ["🚀 节点选择", "🎯 全球直连", "🐸 手动切换"] },
     { "tag": "🎯 全球直连", "type": "direct" },
     { "tag": "dns-out", "type": "dns" }
   ],
