@@ -65,7 +65,7 @@
     { "tag": "♻️ 自动选择", "type": "urltest", "outbounds": ["{all}"], "filter": [{ "action": "exclude", "keywords": ["网站|地址|剩余|过期|时间|有效|一元|每月"] }], "url": "http://www.gstatic.com/generate_204", "interval": "3m", "tolerance": 50,"idle_timeout": "30m", "interrupt_exist_connections": true },
     { "tag": "🚀 节点选择", "type": "selector", "outbounds": ["♻️ 自动选择", "🎯 全球直连"] },
     { "tag": "🍀 Google", "type": "selector", "outbounds": ["♻️ 自动选择", "🎯 全球直连"]  },
-    { "tag": "🐟 漏网之鱼", "type": "selector", "outbounds": ["🚀 节点选择", "🎯 全球直连"]  },
+    { "tag": "🐟 漏网之鱼", "type": "selector", "outbounds": ["♻️ 自动选择", "🎯 全球直连"]  },
     { "tag": "GLOBAL", "type": "selector", "outbounds": ["🚀 节点选择", "🎯 全球直连"] },
     { "tag": "🎯 全球直连", "type": "direct" },
     { "tag": "dns-out", "type": "dns" }
@@ -75,7 +75,7 @@
         "auto_detect_interface": true,
         "final": "🐟 漏网之鱼",
     "rules": [
-      { "type": "logical", "mode": "or", "rules": [{ "port": 1053 }, { "protocol": "dns" }], "outbound": "dns-out" },
+      { "type": "logical", "mode": "or", "rules": [{ "port": 53 }, { "protocol": "dns" }], "outbound": "dns-out" },
       { "clash_mode": "direct", "outbound": "🎯 全球直连" },
       { "clash_mode": "global", "outbound": "GLOBAL" },
       { "domain": ["clash.razord.top", "yacd.metacubex.one", "yacd.haishan.me", "d.metacubex.one"], "outbound": "🎯 全球直连" },
