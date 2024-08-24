@@ -62,17 +62,17 @@
 
   
   "outbounds": [
-    { "tag": "♻️ 自动选择", "type": "urltest", "outbounds": ["{all}"], "filter": [{ "action": "exclude", "keywords": ["网站|地址|剩余|过期|时间|有效|一元|每月"] }], "url": "http://www.gstatic.com/generate_204", "interval": "3m", "tolerance": 50，"idle_timeout": "30m", "interrupt_exist_connections": true },
+    { "tag": "♻️ 自动选择", "type": "urltest", "outbounds": ["{all}"], "filter": [{ "action": "exclude", "keywords": ["网站|地址|剩余|过期|时间|有效|一元|每月"] }], "url": "http://www.gstatic.com/generate_204", "interval": "3m", "tolerance": 50,"idle_timeout": "30m", "interrupt_exist_connections": true },
     { "tag": "🚀 节点选择", "type": "selector", "outbounds": ["♻️ 自动选择",  "🎯 全球直连"] },
-    { "tag": "📹 YouTube", "type": "selector", "outbounds": ["🚀 节点选择", "♻️ 自动选择", },
-    { "tag": "🤖 OpenAI", "type": "selector", "outbounds": ["🚀 节点选择", "♻️ 自动选择", },
-    { "tag": "🍀 Google", "type": "selector", "outbounds": ["🚀 节点选择", "♻️ 自动选择" },
-    { "tag": "📲 Telegram", "type": "selector", "outbounds": ["🚀 节点选择", "♻️ 自动选择" },
-    { "tag": "🎵 TikTok", "type": "selector", "outbounds": ["🚀 节点选择", "♻️ 自动选择" },
-    { "tag": "🎥 Netflix", "type": "selector", "outbounds": ["🚀 节点选择", "♻️ 自动选择" },
+    { "tag": "📹 YouTube", "type": "selector", "outbounds": ["🚀 节点选择", "♻️ 自动选择"]  },
+    { "tag": "🤖 OpenAI", "type": "selector", "outbounds": ["🚀 节点选择", "♻️ 自动选择"]  },
+    { "tag": "🍀 Google", "type": "selector", "outbounds": ["🚀 节点选择", "♻️ 自动选择"]  },
+    { "tag": "📲 Telegram", "type": "selector", "outbounds": ["🚀 节点选择", "♻️ 自动选择"]  },
+    { "tag": "🎵 TikTok", "type": "selector", "outbounds": ["🚀 节点选择", "♻️ 自动选择"]  },
+    { "tag": "🎥 Netflix", "type": "selector", "outbounds": ["🚀 节点选择", "♻️ 自动选择"]  },
     { "tag": "🪟 Microsoft", "type": "selector", "outbounds": ["🚀 节点选择", "♻️ 自动选择", "🎯 全球直连"] },
     { "tag": "🍎 Apple", "type": "selector", "outbounds": ["🎯 全球直连", "♻️ 自动选择"] },
-    { "tag": "🐟 漏网之鱼", "type": "selector", "outbounds": ["🚀 节点选择", "🎯 全球直连" },
+    { "tag": "🐟 漏网之鱼", "type": "selector", "outbounds": ["🚀 节点选择", "🎯 全球直连"]  },
     { "tag": "GLOBAL", "type": "selector", "outbounds": ["🚀 节点选择", "🎯 全球直连"] },
     { "tag": "🎯 全球直连", "type": "direct" },
     { "tag": "dns-out", "type": "dns" }
