@@ -6,7 +6,7 @@
     "experimental": {
         "clash_api": {
             "external_controller": "0.0.0.0:9090",
-            "external_ui": "ui",
+            "external_ui":"/etc/sing-box/ui/",
             "secret": "",
             "external_ui_download_url": "https://mirror.ghproxy.com/https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip",
             "external_ui_download_detour": "🎯 全球直连",
@@ -14,34 +14,22 @@
         }
     },
     "dns": {
-        "fakeip": {
-            "enabled": true,
-            "inet4_range": "198.18.0.0/15",
-            "inet6_range": "fc00::/18"
-        },
         "servers": [
             {
                 "tag": "proxydns",
                 "address": "tls://8.8.8.8",
                 "address_resolver": "localdns",
                 "address_strategy": "ipv4_only",
-                "detour": "🚀 节点选择"
+                "detour": "♻️ 自动选择"
             },
             {
                 "tag": "localdns",
                 "address": "223.5.5.5",
                 "address_strategy": "ipv4_only",
                 "detour": "🎯 全球直连"
-            },
-            {
-                "tag": "fakeip",
-                "address": "fakeip"
-            },
-            {
-                "tag": "block",
-                "address": "rcode://success"
             }
-        ],
+        ]
+,
         "rules": [
             {
                 "outbound": "any",
@@ -93,6 +81,11 @@
         "independent_cache": true,
         "strategy": "ipv4_only"
     },
+        "fakeip": {
+            "enabled": true,
+            "inet4_range": "198.18.0.0/15",
+            "inet6_range": "fc00::/18"
+        },
     "ntp": {
         "enabled": true,
         "server": "ntp.aliyun.com",
@@ -101,6 +94,12 @@
         "detour": "🎯 全球直连"
     },
     "inbounds": [
+        {
+            "type": "direct",
+            "tag": "dns-in",
+            "listen":"0.0.0.0",
+            "listen_port": 53
+        },
         {
             "tag": "tun",
             "type": "tun",
@@ -193,16 +192,7 @@
         "final": "🐟 漏网之鱼",
         "rules": [
             {
-                "type": "logical",
-                "mode": "or",
-                "rules": [
-                    {
-                        "port": 53
-                    },
-                    {
-                        "protocol": "dns"
-                    }
-                ],
+                "inbound": "dns-in",
                 "outbound": "dns-out"
             },
             {
