@@ -228,19 +228,19 @@
             },
             {
                 "rule_set": [
+                    "geosite-github",
+                    "geosite-youtube",
+                    "geoip-telegram",
+                    "geosite-telegram",
+                    "geosite-steam",
                     "geoip-google",
                     "geosite-google",
                     "geosite-openai",
-                    "geosite-youtube",
-                    "geosite-github",
-                    "geoip-telegram",
-                    "geosite-telegram",
                     "geosite-tiktok",
                     "geoip-netflix",
                     "geosite-netflix",
                     "geoip-apple",
                     "geosite-apple",
-                    "geosite-steam",
                     "geosite-microsoft"
                 ],
                 "outbound": "🍀 Google"
@@ -258,13 +258,6 @@
             }
         ],
         "rule_set": [
-            {
-                "tag": "geosite-openai",
-                "type": "remote",
-                "format": "binary",
-                "url": "https://mirror.ghproxy.com/https://raw.githubusercontent.com/Toperlock/sing-box-geosite/main/rule/OpenAI.srs",
-                "download_detour": "🎯 全球直连"
-            },
             {
                 "tag": "geosite-youtube",
                 "type": "remote",
@@ -284,6 +277,13 @@
                 "type": "remote",
                 "format": "binary",
                 "url": "https://mirror.ghproxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/google.srs",
+                "download_detour": "🎯 全球直连"
+            },
+            {
+                "tag": "geosite-openai",
+                "type": "remote",
+                "format": "binary",
+                "url": "https://mirror.ghproxy.com/https://raw.githubusercontent.com/Toperlock/sing-box-geosite/main/rule/OpenAI.srs",
                 "download_detour": "🎯 全球直连"
             },
             {
