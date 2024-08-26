@@ -97,16 +97,7 @@
             "type": "direct",
             "tag": "dns-in",
             "listen":"0.0.0.0",
-            "listen_port": 53
-        },
-        {
-            "type": "tproxy",
-            "tag": "tproxy-in",
-            "listen": "::",
-            "listen_port": 5332,
-            "network": "udp",
-            "sniff": true,
-            "sniff_override_destination": false
+            "listen_port": 1053
         },
         {
             "tag": "mixed",
@@ -114,6 +105,23 @@
             "listen": "0.0.0.0",
             "listen_port": 7890,
             "sniff": true
+        },
+        {
+            "tag": "tun",
+            "type": "tun",
+            "inet4_address": "172.19.0.1/30",
+            "mtu": 9000,
+            "stack": "system",
+            "auto_route": true,
+            "strict_route": true,
+            "sniff": true,
+            "platform": {
+                "http_proxy": {
+                    "enabled": true,
+                    "server": "127.0.0.1",
+                    "server_port": 7890
+                }
+            }
         }
     ],
     "outbounds": [
