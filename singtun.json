@@ -14,11 +14,6 @@
         }
     },
     "dns": {
-        "fakeip": {
-            "enabled": true,
-            "inet4_range": "198.18.0.0/15",
-            "inet6_range": "fc00::/18"
-        },
         "servers": [
             {
                 "tag": "proxydns",
@@ -48,43 +43,31 @@
                 "server": "proxydns"
             },
             {
-                "query_type": [
-                    "A",
-                    "AAAA"
-                ],
-                "rule_set": "geosite-cn",
-                "server": "fakeip"
-            },
-            {
-                "rule_set": "geosite-cn",
+                "rule_set": [
+                    "geoip-cn",
+                   "geosite-cn"
+                     ],
                 "server": "localdns"
             },
-            {
-                "type": "logical",
-                "mode": "and",
-                "rules": [
-                    {
-                        "rule_set": "geosite-geolocation-!cn",
-                        "invert": true
-                    },
-                    {
-                        "rule_set": "geoip-cn"
-                    }
-                ],
-                "server": "proxydns",
-                "client_subnet": "223.5.5.5/24"
-            },
-            {
-                "query_type": [
-                    "A",
-                    "AAAA"
-                ],
-                "server": "fakeip"
-            }
+      {
+        "type": "logical",
+        "mode": "and",
+        "rules": [
+          {
+            "rule_set":  [
+                    "geoip-cn",
+                   "geosite-cn"
+                     ],
+            "invert": true
+          }
         ],
-        "independent_cache": true,
-        "strategy": "ipv4_only"
-    },
+        "server": "proxydns",
+        "client_subnet": "223.5.5.5/24"
+      }
+    ],
+    "independent_cache": true,
+    "strategy": "ipv4_only"
+  },
     "ntp": {
         "enabled": true,
         "server": "ntp.aliyun.com",
@@ -92,36 +75,33 @@
         "interval": "30m",
         "detour": "🎯 全球直连"
     },
-    "inbounds": [
+  "inbounds": [
         {
-            "type": "direct",
-            "tag": "dns-in",
-            "listen": "0.0.0.0",
-            "listen_port": 1053
-        },
-        {
-            "tag": "mixed",
-            "type": "mixed",
-            "listen": "0.0.0.0",
-            "listen_port": 7890,
-            "sniff": true
-        },
-        {
-            "tag": "tun",
             "type": "tun",
+            "tag": "tun-in",
             "inet4_address": "172.19.0.1/30",
             "mtu": 9000,
             "stack": "system",
             "auto_route": true,
             "strict_route": true,
             "sniff": true,
-            "platform": {
-                "http_proxy": {
-                    "enabled": true,
-                    "server": "127.0.0.1",
-                    "server_port": 7890
-                }
-            }
+            "sniff_override_destination": false,
+            "sniff_timeout": "300ms",
+            "domain_strategy": "ipv4_only"
+        },
+        {
+            "type": "mixed",
+            "tag": "dns-in",
+            "listen": "::",
+            "listen_port": 7890,
+            "tcp_fast_open": true,
+            "tcp_multi_path": false,
+            "udp_fragment": true,
+            "udp_timeout": "5m",
+            "sniff": true,
+            "sniff_override_destination": false,
+            "sniff_timeout": "300ms",
+            "domain_strategy": "ipv4_only"
         }
     ],
     "outbounds": [
