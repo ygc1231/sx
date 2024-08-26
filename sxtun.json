@@ -4,12 +4,14 @@
         "timestamp": true
     },
     "experimental": {
-        "enabled": true,
-        "path": "/etc/sing-box/cache.db",
-        "cache_id": "",
-        "store_fakeip": false,
-        "store_rdrc": false,
-        "rdrc_timeout": "7d",
+        "cache_file": {
+            "enabled": true,
+            "path": "/etc/sing-box/cache.db",
+            "cache_id": "",
+            "store_fakeip": false,
+            "store_rdrc": false,
+            "rdrc_timeout": "7d"
+        },
         "clash_api": {
             "external_controller": "0.0.0.0:9090",
             "external_ui":"/etc/sing-box/ui/",
