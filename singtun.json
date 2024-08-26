@@ -3,6 +3,12 @@
         "level": "info",
         "timestamp": true
     },
+  "enabled": true,
+  "path": "/etc/sing-box/cache.db",
+  "cache_id": "",
+  "store_fakeip": false,
+  "store_rdrc": false,
+  "rdrc_timeout": "7d",
     "experimental": {
         "clash_api": {
             "external_controller": "0.0.0.0:9090",
@@ -87,7 +93,14 @@
             "sniff": true,
             "sniff_override_destination": false,
             "sniff_timeout": "300ms",
-            "domain_strategy": "ipv4_only"
+            "domain_strategy": "ipv4_only",
+            "platform": {
+                "http_proxy": {
+                    "enabled": true,
+                    "server": "127.0.0.1",
+                    "server_port": 7890
+                }
+            }
         },
         {
             "type": "mixed",
