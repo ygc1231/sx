@@ -78,7 +78,7 @@
   "inbounds": [
         {
             "type": "tun",
-            "tag": "tun-in",
+            "tag": "dns-in",
             "inet4_address": "172.19.0.1/30",
             "mtu": 9000,
             "stack": "system",
