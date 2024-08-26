@@ -32,14 +32,6 @@
                 "address": "223.5.5.5",
                 "address_strategy": "ipv4_only",
                 "detour": "🎯 全球直连"
-            },
-            {
-                "tag": "fakeip",
-                "address": "fakeip"
-            },
-            {
-                "tag": "block",
-                "address": "rcode://success"
             }
         ],
         "rules": [
@@ -102,15 +94,16 @@
     },
     "inbounds": [
         {
-            "type": "direct",
-            "tag": "dns-in",
-            "listen":"0.0.0.0",
-            "listen_port": 53
+            "tag": "mixed",
+            "type": "mixed",
+            "listen": "0.0.0.0",
+            "listen_port": 7890,
+            "sniff": true
         },
         {
             "tag": "tun",
             "type": "tun",
-            "inet4_address": "172.19.0.0/30",
+            "inet4_address": "172.19.0.1/30",
             "mtu": 9000,
             "stack": "system",
             "auto_route": true,
@@ -119,17 +112,10 @@
             "platform": {
                 "http_proxy": {
                     "enabled": true,
-                    "server": "0.0.0.0",
+                    "server": "127.0.0.1",
                     "server_port": 7890
                 }
             }
-        },
-        {
-            "tag": "mixed",
-            "type": "mixed",
-            "listen": "0.0.0.0",
-            "listen_port": 7890,
-            "sniff": true
         }
     ],
     "outbounds": [
