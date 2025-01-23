@@ -68,7 +68,7 @@
     { "tag": "🚀 节点选择", "type": "selector", "outbounds": ["♻️ 自动选择", "🎯 全球直连"] },
     { "tag": "🍀 Google", "type": "selector", "outbounds": ["🚀 节点选择", "♻️ 自动选择"] },
     { "tag": "🐠 漏网之鱼", "type": "selector", "outbounds": ["🚀 节点选择","🎯 全球直连"] },
-    { "tag": "GLOBAL", "type": "selector", "outbounds": ["{all}"]},
+    { "tag": "GLOBAL","type": "selector","outbounds": ["🚀 节点选择","🎯 全球直连"]},
     { "tag": "🎯 全球直连", "type": "direct" },
     { "tag": "dns-out", "type": "dns" }
   ],
