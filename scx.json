@@ -1,69 +1,69 @@
 {
     "log": {
-        "disabled": false,
-        "level": "info",
+        "disabled": false，
+        "level": "info"，
         "timestamp": true
-    },
+    }，
     "experimental": {
         "cache_file": {
-            "enabled": true,
-            "path": "/etc/sing-box/cache.db",
+            "enabled": true，
+            "path": "/etc/sing-box/cache.db"，
             "store_fakeip": ture
         }
-    },
+    }，
     "dns": {
         "servers": [
             {
-                "tag": "proxyDns",
-                "address": "https://dns.google/dns-query",
-                "address_resolver": "defaultDns",
-                "address_strategy": "ipv4_only",
+                "tag": "proxyDns"，
+                "address": "https://dns.google/dns-query"，
+                "address_resolver": "defaultDns"，
+                "address_strategy": "ipv4_only"，
                 "detour": "🚀 节点选择"
-            },
+            }，
             {
-                "tag": "localDns",
-                "address": "202.103.44.150",
-                "address_resolver": "defaultDns",
-                "address_strategy": "ipv4_only",
+                "tag": "localDns"，
+                "address": "202.103.44.150"，
+                "address_resolver": "defaultDns"，
+                "address_strategy": "ipv4_only"，
                 "detour": "🎯 全球直连"
-            },
+            }，
             {
-                "tag": "defaultDns",
-                "address": "202.103.44.150",
-                "address_strategy": "ipv4_only",
+                "tag": "defaultDns"，
+                "address": "202.103.44.150"，
+                "address_strategy": "ipv4_only"，
                 "detour": "🎯 全球直连"
             }
-        ],
+        ]，
         "rules": [
             {
-                "outbound": "any",
-                "server": "defaultDns",
+                "outbound": "any"，
+                "server": "defaultDns"，
                 "disable_cache": true
-            },
+            }，
             {
-                "clash_mode": "direct",
+                "clash_mode": "direct"，
                 "server": "localDns"
-            },
+            }，
             {
-                "clash_mode": "global",
+                "clash_mode": "global"，
                 "server": "proxyDns"
-            },
+            }，
             {
-                "rule_set": "geosite-cn",
+                "rule_set": "geosite-cn"，
                 "server": "localDns"
-            },
+            }，
             {
-                "rule_set": "geosite-geolocation-!cn",
+                "rule_set": "geosite-geolocation-!cn"，
                 "server": "proxyDns"
             }
-        ],
-        "final": "localDns",
+        ]，
+        "final": "localDns"，
         "strategy": "ipv4_only"
-    },
+    }，
     "outbounds": [
         {
-            "tag": "♻️ 自动选择",
-            "type": "urltest",
+            "tag": "♻️ 自动选择"，
+            "type": "urltest"，
             "outbounds": [
                 "{all}"
             ],
