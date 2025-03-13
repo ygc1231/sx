@@ -8,7 +8,7 @@
         "cache_file": {
             "enabled": true,
             "path": "/etc/sing-box/cache.db",
-            "store_fakeip": false
+            "store_fakeip": ture
         }
     },
     "dns": {
@@ -131,15 +131,6 @@
             {
                 "clash_mode": "global",
                 "outbound": "GLOBAL"
-            },
-            {
-                "domain": [
-                    "clash.razord.top",
-                    "yacd.metacubex.one",
-                    "yacd.haishan.me",
-                    "d.metacubex.one"
-                ],
-                "outbound": "🎯 全球直连"
             },
             {
                 "rule_set": [
