@@ -200,7 +200,6 @@
                 "rule_set": [
                     "geoip-google",
                     "geosite-google",
-                    "geosite-chat",
                     "geosite-youtube",
                     "geosite-github",
                     "geoip-netflix",
@@ -229,13 +228,6 @@
             }
         ],
         "rule_set": [
-            {
-                "tag": "geosite-chat",
-                "type": "remote",
-                "format": "binary",
-                "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/category-ai-chat-!cn.srs",
-                "download_detour": "🚀 节点选择"
-            },
             {
                 "tag": "geosite-youtube",
                 "type": "remote",
