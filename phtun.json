@@ -26,14 +26,33 @@
       "strategy": "ipv4_only"
     },
   
-  "inbounds": [
-    {
-      "type": "tun",
-      "address": "172.19.0.1/30",
-      "mtu": 9000,
-      "auto_route": true
-    }
-  ],
+    "inbounds": [
+        {
+            "type": "tun",
+            "address": "172.18.0.1/30",
+            "mtu": 9000,
+            "auto_route": true,
+            "strict_route": true,
+            "sniff": true,
+            "stack": "system",
+            "platform": {
+                "http_proxy": {
+                    "enabled": true,
+                    "server": "127.0.0.1",
+                    "server_port": 7890
+                }
+            }
+        },
+        {
+            "type": "mixed",
+            "listen": "127.0.0.1",
+            "listen_port": 7890,
+            "sniff": true,
+            "users": [
+
+            ]
+        }
+    ],
   
   "outbounds": [
     { "tag": "♻️ 自动选择", "type": "urltest", "outbounds": ["{all}"], "filter": [{ "action": "exclude", "keywords": ["网|地|剩|过|时|效"] }], "url": "http://www.gstatic.com/generate_204", "interval": "10m", "tolerance": 50 },
