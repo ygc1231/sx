@@ -284,7 +284,7 @@
                 "tag": "geosite-cn",
                 "type": "remote",
                 "format": "binary",
-                "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/cn.srs",
+                "url": "https://raw.githubusercontent.com/lyc8503/sing-box-rules/blob/rule-set-geosite/geosite-cn.srs",
                 "download_detour": "♻️ 自动选择"
             },
             {
@@ -326,7 +326,7 @@
                 "tag": "geoip-cn",
                 "type": "remote",
                 "format": "binary",
-                "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geoip/cn.srs",
+                "url": "https://raw.githubusercontent.com/lyc8503/sing-box-rules/blob/rule-set-geoip/geoip-cn.srs",
                 "download_detour": "♻️ 自动选择"
             },
             {
