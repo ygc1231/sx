@@ -6,7 +6,7 @@
     },
     "experimental": {
         "clash_api": {
-            "external_controller": "0.0.0.0:9095",
+            "external_controller": "192.168.2.9:9095",
             "external_ui": "/etc/sing-box/ui",
             "secret": "",
             "external_ui_download_url": "https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip",
@@ -75,15 +75,15 @@
             "platform": {
                 "http_proxy": {
                     "enabled": true,
-                    "server": "127.0.0.1",
-                    "server_port": 2080
+                    "server": "192.168.2.9",
+                    "server_port": 7890
                 }
             }
         },
         {
             "type": "mixed",
-            "listen": "127.0.0.1",
-            "listen_port": 2080,
+            "listen": "192.168.2.9",
+            "listen_port": 7890,
             "sniff": true,
             "users": []
         }
