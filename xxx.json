@@ -83,7 +83,7 @@
         {
             "type": "mixed",
             "listen": "192.168.2.9",
-            "listen_port": 7890,
+            "listen_port": 7890
         }
     ],
     "outbounds": [
@@ -183,7 +183,7 @@
                     "geosite-apple",
                     "geoip-apple",
                     "geosite-onedrive",
-                    "rule_set": "geosite-geolocation-!cn",
+                    "geosite-geolocation-!cn",
                     "geosite-microsoft"
                 ],
                 "outbound": "🍀 Google"
