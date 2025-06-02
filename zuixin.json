@@ -1,10 +1,11 @@
 {
     "log": {
-        "disabled": false,
+        "disabled": true,
         "level": "info",
+        "output": "box.log",
         "timestamp": true
     },
-    "experimental": {
+        "experimental": {
         "clash_api": {
             "external_controller": "0.0.0.0:9095",
             "external_ui": "/etc/sing-box/ui",
@@ -15,15 +16,9 @@
         },
         "cache_file": {
             "enabled": true,
-            "path": "/etc/ShellCrash/cache.db",
+            "path": "/etc/sing-box/cache.db",
             "store_fakeip": false
         }
-    },
-    "ntp": {
-        "enabled": true,
-        "server": "ntp.aliyun.com",
-        "server_port": 123,
-        "interval": "30m"
     },
     "dns": {
         "servers": [
@@ -69,6 +64,12 @@
         "final": "dns_proxy",
         "strategy": "ipv4_only"
     },
+    "ntp": {
+        "enabled": false,
+        "server": "time.apple.com",
+        "server_port": 123,
+        "interval": "30m"
+    },
     "inbounds": [
         {
             "type": "tun",
@@ -81,14 +82,14 @@
             "platform": {
                 "http_proxy": {
                     "enabled": true,
-                    "server": "127.0.0.1",
+                    "server": "::",
                     "server_port": 7890
                 }
             }
         },
         {
             "type": "mixed",
-            "listen": "127.0.0.1",
+            "listen": "::",
             "listen_port": 7890,
             "sniff": true,
             "users": []
