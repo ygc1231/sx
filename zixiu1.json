@@ -2,13 +2,13 @@
     "log": {
         "disabled": false,
         "level": "info",
-        "output": "/etc/sing-box/box.log",
+        "output": "/etc/ShellCrash/box.log",
         "timestamp": true
     },
     "experimental": {
         "clash_api": {
             "external_controller": "0.0.0.0:9095",
-            "external_ui": "/etc/sing-box/ui",
+            "external_ui": "/etc/ShellCrash/ui",
             "secret": "",
             "external_ui_download_url": "https://github.com/Zephyruso/zashboard/releases/download/v1.94.1/dist.zip",
             "external_ui_download_detour": "♻️ 自动选择",
@@ -16,7 +16,7 @@
         },
         "cache_file": {
             "enabled": true,
-            "path": "/etc/sing-box/cache.db",
+            "path": "/etc/ShellCrash/cache.db",
             "store_fakeip": false
         }
     },
