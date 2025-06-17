@@ -126,11 +126,11 @@
             },
             {
                 "clash_mode": "direct",
-                "server": "dns_direct"
+                "server": "🎯 全球直连"
             },
             {
                 "clash_mode": "global",
-                "server": "dns_proxy"
+                "server": "GLOBAL"
             },
             {
                 "domain": [
