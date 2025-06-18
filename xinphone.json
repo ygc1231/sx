@@ -4,6 +4,27 @@
         "level": "info",
         "timestamp": true
     },
+      "endpoints": {
+        "type": "wireguard",
+        "tag": "wg-ep",
+        "system": false,
+        "mtu": 1408,
+        "address": [
+            "10.18.0.2/24"
+        ],
+        "private_key": "QHx18HL2cryFaPNA29MnZlUb7U01FfC4JiDd285A8WI=",
+        "peers": [
+            {
+                "address": "955321.xyz",
+                "port": 51820,
+                "public_key": "dXYbjLfYhIECWGOP08MJgqls5Wh1BELzz1z5XdDkCG0=",
+                "allowed_ips": [
+                    "0.0.0.0/0"
+                ],
+                "persistent_keepalive_interval": 25
+            }
+        ]
+    },
     "dns": {
         "servers": [
             {
