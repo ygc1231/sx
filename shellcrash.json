@@ -126,11 +126,11 @@
             },
             {
                 "clash_mode": "direct",
-                "server": "🎯 全球直连"
+                "outbound": "🎯 全球直连"
             },
             {
                 "clash_mode": "global",
-                "server": "GLOBAL"
+                "outbound": "GLOBAL"
             },
             {
                 "domain": [
