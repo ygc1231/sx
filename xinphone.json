@@ -13,12 +13,12 @@
             "address": [
                 "10.18.0.2/24"
             ],
-            "private_key": "wH18q9ZqOQDCOWsyT/JTLIY0glmEfZO6kNUXm7k6u0Q=",
+            "private_key": "MAoxRhtH8PW/3mxueduDwj0fiQChRhfrM+eF/KZVnX8=",
             "peers": [
                 {
                     "address": "953321.xyz",
                     "port": 51820,
-                    "public_key": "HkcQnKncc22jdnEF+jkg8DckC6/NdOYgmZqseWCQzl0=",
+                    "public_key": "hwdP0KISf9iE+SPCQuf8BfLpSXnMLiO1LkqP8+OdgDg=",
                     "allowed_ips": [
                         "0.0.0.0/0"
                     ],
