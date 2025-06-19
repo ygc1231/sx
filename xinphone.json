@@ -130,6 +130,16 @@
                 "action": "hijack-dns"
             },
             {
+                "action": "route",
+                "ip_cidr": "10.18.0.0/24",
+                "outbound": "wg-ep"
+            },
+            {
+                "action": "route",
+                "ip_cidr": "192.168.2.0/24",
+                "outbound": "wg-ep"
+            },
+            {
                 "rule_set": "geosite-private",
                 "outbound": "🎯 全球直连"
             },
