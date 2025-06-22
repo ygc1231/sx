@@ -161,26 +161,18 @@
                 "outbound": "GLOBAL"
             },
             {
-                "domain": [
-                    "yacd.haishan.me",
-                    "d.metacubex.one"
-                ],
-                "action": "route",
-                "outbound": "🎯 全球直连"
-            },
-            {
-                "ip_cidr": [
-                    "10.0.0.0/24",
-                    "192.168.2.0/24"
-                ],
-                "action": "route",
-                "outbound": "🎯 全球直连"
-            },
-            {
                 "rule_set": [
                     "geosite-private",
                     "geoip-cn",
                     "geosite-cn"
+                ],
+                "ip_cidr": [
+                    "10.0.0.0/24",
+                    "192.168.2.0/24"
+                ],
+                "domain": [
+                    "baidu.com",
+                    "bilibili.com"
                 ],
                 "action": "route",
                 "outbound": "🎯 全球直连"
