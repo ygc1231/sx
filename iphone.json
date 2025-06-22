@@ -4,63 +4,47 @@
         "level": "info",
         "timestamp": true
     },
-    "experimental": {
-        "cache_file": {
-            "enabled": true
-        }
-    },
     "dns": {
         "servers": [
             {
-                "tag": "proxyDns",
-                "address": "https://dns.google/dns-query",
-                "address_resolver": "defaultDns",
-                "address_strategy": "ipv4_only",
-                "detour": "🚀 节点选择"
-            },
-            {
-                "tag": "localDns",
+                "tag": "dns_direct",
                 "address": "223.5.5.5",
-                "address_resolver": "defaultDns",
                 "address_strategy": "ipv4_only",
+                "strategy": "ipv4_only",
                 "detour": "🎯 全球直连"
             },
             {
-                "tag": "defaultDns",
-                "address": "223.5.5.5",
+                "tag": "dns_proxy",
+                "address": "tls://8.8.8.8",
                 "address_strategy": "ipv4_only",
-                "detour": "🎯 全球直连"
+                "strategy": "ipv4_only",
+                "detour": "♻️ 自动选择"
             }
         ],
         "rules": [
             {
                 "outbound": "any",
-                "server": "defaultDns",
+                "server": "dns_direct",
                 "disable_cache": true
             },
             {
-                "clash_mode": "direct",
-                "server": "localDns"
-            },
-            {
-                "clash_mode": "global",
-                "server": "proxyDns"
-            },
-            {
                 "rule_set": "geosite-cn",
-                "server": "localDns"
+                "action": "route",
+                "server": "dns_direct"
             },
             {
                 "rule_set": "geosite-geolocation-!cn",
-                "server": "proxyDns"
+                "action": "route",
+                "server": "dns_proxy"
             }
         ],
-        "final": "localDns",
+        "final": "dns_proxy",
         "strategy": "ipv4_only"
     },
     "inbounds": [
         {
             "type": "tun",
+            "tag": "tun-in",
             "address": "172.19.0.1/30",
             "mtu": 9000,
             "auto_route": true
@@ -68,10 +52,9 @@
     ],
     "outbounds": [
         {
-            "tag": "🚀 节点选择",
+            "tag": "🍀 Google",
             "type": "selector",
             "outbounds": [
-                "🐸 手动切换",
                 "♻️ 自动选择",
                 "🎯 全球直连"
             ]
@@ -80,7 +63,7 @@
             "tag": "🐠 漏网之鱼",
             "type": "selector",
             "outbounds": [
-                "🚀 节点选择",
+                "♻️ 自动选择",
                 "🎯 全球直连"
             ]
         },
@@ -94,20 +77,13 @@
                 {
                     "action": "exclude",
                     "keywords": [
-                        "网|地|余|期|间|效"
+                        "网|址|余|期|间|效"
                     ]
                 }
             ],
             "url": "http://www.gstatic.com/generate_204",
             "interval": "10m",
             "tolerance": 50
-        },
-        {
-            "tag": "🐸 手动切换",
-            "type": "selector",
-            "outbounds": [
-                "{all}"
-            ]
         },
         {
             "tag": "GLOBAL",
@@ -119,10 +95,6 @@
         {
             "tag": "🎯 全球直连",
             "type": "direct"
-        },
-        {
-            "tag": "dns-out",
-            "type": "dns"
         }
     ],
     "route": {
@@ -130,71 +102,51 @@
         "final": "🐠 漏网之鱼",
         "rules": [
             {
-                "type": "logical",
-                "mode": "or",
-                "rules": [
-                    {
-                        "port": 53
-                    },
-                    {
-                        "protocol": "dns"
-                    }
-                ],
-                "outbound": "dns-out"
+                "action": "sniff",
+                "inbound": "tun-in"
             },
             {
-                "clash_mode": "direct",
-                "outbound": "🎯 全球直连"
-            },
-            {
-                "clash_mode": "global",
-                "outbound": "GLOBAL"
-            },
-            {
-                "domain": [
-                    "clash.razord.top",
-                    "yacd.metacubex.one",
-                    "yacd.haishan.me",
-                    "d.metacubex.one"
-                ],
-                "outbound": "🎯 全球直连"
+                "protocol": "dns",
+                "action": "hijack-dns"
             },
             {
                 "rule_set": [
                     "geosite-private",
-                    "geoip-private"
-                ],
-                "outbound": "🎯 全球直连"
-            },
-            {
-                "rule_set": [
-                    "geosite-chat",
-                    "geosite-github",
-                    "geosite-youtube",
-                    "geosite-onedrive",
-                    "geosite-microsoft",
-                    "geoip-google",
-                    "geosite-google",
-                    "geosite-tiktok",
-                    "geoip-apple",
-                    "geosite-apple",
-                    "geoip-netflix",
-                    "geosite-netflix",
-                    "geoip-telegram",
-                    "geosite-telegram"
-                ],
-                "outbound": "🚀 节点选择"
-            },
-            {
-                "rule_set": "geosite-geolocation-!cn",
-                "outbound": "🚀 节点选择"
-            },
-            {
-                "rule_set": [
                     "geoip-cn",
                     "geosite-cn"
                 ],
+                "ip_cidr": [
+                    "10.0.0.0/24",
+                    "192.168.2.0/24"
+                ],
+                "domain": [
+                    "yacd.metacubex.one",
+                    "baidu.com",
+                    "bilibili.com"
+                ],
+                "action": "route",
                 "outbound": "🎯 全球直连"
+            },
+            {
+                "action": "route",
+                "rule_set": [
+                    "geosite-chat",
+                    "geosite-youtube",
+                    "geosite-github",
+                    "geosite-google",
+                    "geoip-google",
+                    "geosite-telegram",
+                    "geoip-telegram",
+                    "geosite-tiktok",
+                    "geosite-netflix",
+                    "geoip-netflix",
+                    "geosite-apple",
+                    "geoip-apple",
+                    "geosite-onedrive",
+                    "geosite-microsoft",
+                    "geosite-geolocation-!cn"
+                ],
+                "outbound": "🍀 Google"
             }
         ],
         "rule_set": [
@@ -203,133 +155,133 @@
                 "type": "remote",
                 "format": "binary",
                 "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/category-ai-!cn.srs",
-                "download_detour": "🚀 节点选择"
+                "download_detour": "♻️ 自动选择"
             },
             {
                 "tag": "geosite-youtube",
                 "type": "remote",
                 "format": "binary",
                 "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/youtube.srs",
-                "download_detour": "🚀 节点选择"
+                "download_detour": "♻️ 自动选择"
             },
             {
                 "tag": "geosite-google",
                 "type": "remote",
                 "format": "binary",
                 "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/google.srs",
-                "download_detour": "🚀 节点选择"
+                "download_detour": "♻️ 自动选择"
             },
             {
                 "tag": "geosite-github",
                 "type": "remote",
                 "format": "binary",
                 "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/github.srs",
-                "download_detour": "🚀 节点选择"
+                "download_detour": "♻️ 自动选择"
             },
             {
                 "tag": "geosite-telegram",
                 "type": "remote",
                 "format": "binary",
                 "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/telegram.srs",
-                "download_detour": "🚀 节点选择"
+                "download_detour": "♻️ 自动选择"
             },
             {
                 "tag": "geosite-tiktok",
                 "type": "remote",
                 "format": "binary",
                 "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/tiktok.srs",
-                "download_detour": "🚀 节点选择"
+                "download_detour": "♻️ 自动选择"
             },
             {
                 "tag": "geosite-netflix",
                 "type": "remote",
                 "format": "binary",
                 "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/netflix.srs",
-                "download_detour": "🚀 节点选择"
+                "download_detour": "♻️ 自动选择"
             },
             {
                 "tag": "geosite-apple",
                 "type": "remote",
                 "format": "binary",
                 "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/apple.srs",
-                "download_detour": "🚀 节点选择"
+                "download_detour": "♻️ 自动选择"
             },
             {
                 "tag": "geosite-microsoft",
                 "type": "remote",
                 "format": "binary",
                 "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/microsoft.srs",
-                "download_detour": "🚀 节点选择"
+                "download_detour": "♻️ 自动选择"
             },
             {
                 "tag": "geosite-onedrive",
                 "type": "remote",
                 "format": "binary",
                 "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/onedrive.srs",
-                "download_detour": "🚀 节点选择"
+                "download_detour": "♻️ 自动选择"
             },
             {
                 "tag": "geosite-geolocation-!cn",
                 "type": "remote",
                 "format": "binary",
                 "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/geolocation-!cn.srs",
-                "download_detour": "🚀 节点选择"
+                "download_detour": "♻️ 自动选择"
             },
             {
                 "tag": "geosite-cn",
                 "type": "remote",
                 "format": "binary",
                 "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/cn.srs",
-                "download_detour": "🚀 节点选择"
+                "download_detour": "♻️ 自动选择"
             },
             {
                 "tag": "geosite-private",
                 "type": "remote",
                 "format": "binary",
                 "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/private.srs",
-                "download_detour": "🚀 节点选择"
+                "download_detour": "♻️ 自动选择"
             },
             {
                 "tag": "geoip-google",
                 "type": "remote",
                 "format": "binary",
                 "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geoip/google.srs",
-                "download_detour": "🚀 节点选择"
+                "download_detour": "♻️ 自动选择"
             },
             {
                 "tag": "geoip-telegram",
                 "type": "remote",
                 "format": "binary",
                 "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geoip/telegram.srs",
-                "download_detour": "🚀 节点选择"
+                "download_detour": "♻️ 自动选择"
             },
             {
                 "tag": "geoip-netflix",
                 "type": "remote",
                 "format": "binary",
                 "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geoip/netflix.srs",
-                "download_detour": "🚀 节点选择"
+                "download_detour": "♻️ 自动选择"
             },
             {
                 "tag": "geoip-apple",
                 "type": "remote",
                 "format": "binary",
                 "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo-lite/geoip/apple.srs",
-                "download_detour": "🚀 节点选择"
+                "download_detour": "♻️ 自动选择"
             },
             {
                 "tag": "geoip-cn",
                 "type": "remote",
                 "format": "binary",
                 "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geoip/cn.srs",
-                "download_detour": "🚀 节点选择"
+                "download_detour": "♻️ 自动选择"
             },
             {
                 "tag": "geoip-private",
                 "type": "remote",
                 "format": "binary",
                 "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geoip/private.srs",
-                "download_detour": "🚀 节点选择"
+                "download_detour": "♻️ 自动选择"
             }
         ]
     }
