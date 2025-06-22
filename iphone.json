@@ -1,9 +1,28 @@
 {
-    "log": {
-        "disabled": false,
-        "level": "info",
-        "timestamp": true
-    },
+    "endpoints": [
+        {
+            "type": "wireguard",
+            "tag": "wg-ep",
+            "system": false,
+            "mtu": 1408,
+            "address": [
+                "10.18.0.2/32"
+            ],
+            "private_key": "YGdD82wYh6yik5olYcj2v5BpHdcZY2hiigl2BgDxhUM=",
+            "listen_port": 10000,
+            "peers": [
+                {
+                    "address": "953321.xyz",
+                    "port": 2222,
+                    "public_key": "8EQOYF6M/J448WnAylwiH/AEQFj0vl+NMg1yj1OLEVM=",
+                    "allowed_ips": [
+                        "0.0.0.0/0"
+                    ],
+                    "persistent_keepalive_interval": 25
+                }
+            ]
+        }
+    ],
     "dns": {
         "servers": [
             {
@@ -110,14 +129,18 @@
                 "action": "hijack-dns"
             },
             {
+                "action": "route",
+                "ip_cidr": [
+                    "10.18.0.0/24",
+                    "192.168.2.0/24"
+                ],
+                "outbound": "wg-ep"
+            }，
+            {
                 "rule_set": [
                     "geosite-private",
                     "geoip-cn",
                     "geosite-cn"
-                ],
-                "ip_cidr": [
-                    "10.0.0.0/24",
-                    "192.168.2.0/24"
                 ],
                 "domain_keyword": [
                     "baidu.com",
