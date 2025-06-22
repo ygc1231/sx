@@ -63,6 +63,7 @@
 			},
 			{
 				"rule_set": "geosite-geolocation-!cn",
+				"action": "route",
 				"server": "dns_proxy"
 			}
 		],
@@ -159,8 +160,6 @@
 			},
 			{
 				"domain": [
-					"clash.razord.top",
-					"yacd.metacubex.one",
 					"yacd.haishan.me",
 					"d.metacubex.one"
 				],
