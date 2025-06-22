@@ -119,8 +119,7 @@
                     "10.0.0.0/24",
                     "192.168.2.0/24"
                 ],
-                "domain": [
-                    "yacd.metacubex.one",
+                "domain_keyword": [
                     "baidu.com",
                     "bilibili.com"
                 ],
