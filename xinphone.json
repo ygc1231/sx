@@ -11,14 +11,14 @@
             "system": false,
             "mtu": 1408,
             "address": [
-                "10.18.0.2/24"
+                "10.18.0.2/32"
             ],
-            "private_key": "MAoxRhtH8PW/3mxueduDwj0fiQChRhfrM+eF/KZVnX8=",
+            "private_key": "YGdD82wYh6yik5olYcj2v5BpHdcZY2hiigl2BgDxhUM=",
             "peers": [
                 {
                     "address": "953321.xyz",
                     "port": 51820,
-                    "public_key": "hwdP0KISf9iE+SPCQuf8BfLpSXnMLiO1LkqP8+OdgDg=",
+                    "public_key": "8EQOYF6M/J448WnAylwiH/AEQFj0vl+NMg1yj1OLEVM=",
                     "allowed_ips": [
                         "0.0.0.0/0"
                     ],
