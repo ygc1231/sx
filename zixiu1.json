@@ -40,6 +40,10 @@
                 "address_strategy": "ipv4_only",
                 "strategy": "ipv4_only",
                 "detour": "♻️ 自动选择"
+            },
+            {
+                "address": "fakeip",
+                "tag": "fakeip"
             }
         ],
         "rules": [
@@ -65,8 +69,20 @@
                 "rule_set": "geosite-geolocation-!cn",
                 "action": "route",
                 "server": "dns_proxy"
+            },
+            {
+                "query_type": [
+                    "A",
+                    "AAAA"
+                ],
+                "server": "fakeip"
             }
         ],
+        "fakeip": {
+            "enabled": true,
+            "inet4_range": "198.18.0.0/15",
+            "inet6_range": "fc00::/18"
+        },
         "final": "dns_proxy",
         "strategy": "ipv4_only"
     },
