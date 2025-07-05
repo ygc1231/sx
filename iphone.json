@@ -23,6 +23,14 @@
                 "disable_cache": true
             },
             {
+                "clash_mode": "direct",
+                "server": "dns_direct"
+            },
+            {
+                "clash_mode": "global",
+                "server": "dns_proxy"
+            },
+            {
                 "rule_set": "geosite-cn",
                 "action": "route",
                 "server": "dns_direct"
@@ -103,6 +111,14 @@
             {
                 "protocol": "dns",
                 "action": "hijack-dns"
+            },
+            {
+                "clash_mode": "direct",
+                "outbound": "🎯 全球直连"
+            },
+            {
+                "clash_mode": "global",
+                "outbound": "GLOBAL"
             },
             {
                 "rule_set": [
