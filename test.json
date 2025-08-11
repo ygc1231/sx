@@ -19,47 +19,47 @@
             "store_fakeip": false
         }
     },
-    "ntp": {
-        "enabled": true,
-        "server": "ntp.aliyun.com",
-        "server_port": 123,
-        "interval": "30m"
-    },
     "dns": {
         "servers": [
             {
-                "tag": "dns_direct",
+                "tag": "local",
                 "type": "udp",
-                "server": "223.5.5.5",
-                "server_port": 53
+                "server": "223.5.5.5"
             },
             {
-                "tag": "dns_proxy",
-                "type": "udp",
-                "server": "8.8.8.8",
-                "server_port": 53
+                "tag": "public",
+                "type": "https",
+                "server": "dns.alidns.com",
+                "domain_resolver": "local"
+            },
+            {
+                "tag": "foreign",
+                "type": "https",
+                "server": "dns.google",
+                "domain_resolver": "local"
             }
         ],
         "rules": [
             {
+                "query_type": "HTTPS",
+                "action": "reject"
+            },
+            {
                 "clash_mode": "direct",
-                "server": "dns_direct"
+                "server": "local"
             },
             {
                 "clash_mode": "global",
-                "server": "dns_proxy"
+                "server": "foreign"
             },
             {
                 "rule_set": "geosite-cn",
-                "server": "dns_direct"
-            },
-            {
-                "rule_set": "geosite-geolocation-!cn",
-                "server": "dns_proxy"
+                "server": "local"
             }
         ],
-        "final": "dns_proxy",
-        "strategy": "ipv4_only"
+        "final": "foreign",
+        "strategy": "ipv4_only",
+        "independent_cache": true
     },
     "inbounds": [
         {
@@ -130,20 +130,29 @@
         "auto_detect_interface": true,
         "final": "🐠 漏网之鱼",
         "default_domain_resolver": {
-            "server": "dns_direct",
-            "rewrite_ttl": 180,
-            "client_subnet": "223.5.5.0/24"
+            "server": "public"
         },
         "rules": [
             {
                 "action": "sniff",
-                "inbound": [
-                    "tun-in",
-                    "mixed-in"
+                "sniffer": [
+                    "http",
+                    "tls",
+                    "quic",
+                    "dns"
                 ]
             },
             {
-                "protocol": "dns",
+                "type": "logical",
+                "mode": "or",
+                "rules": [
+                    {
+                        "port": 53
+                    },
+                    {
+                        "protocol": "dns"
+                    }
+                ],
                 "action": "hijack-dns"
             },
             {
@@ -155,6 +164,7 @@
                 "outbound": "GLOBAL"
             },
             {
+                "ip_is_private": true,
                 "rule_set": [
                     "geosite-private",
                     "geoip-cn",
