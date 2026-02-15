@@ -110,6 +110,9 @@
         }
     ],
     "route": {
+        "default_domain_resolver": {
+            "server": "local"
+        },
         "rules": [
             {
                 "action": "sniff",
@@ -165,7 +168,8 @@
                     "geoip-apple",
                     "geosite-onedrive",
                     "geosite-microsoft",
-                    "geosite-!cn"
+                    "geosite-!cn",
+                    "geosite-steam"
                 ],
                 "outbound": "🍀 Google"
             },
