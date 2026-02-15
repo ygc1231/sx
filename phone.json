@@ -3,15 +3,14 @@
         "servers": [
             {
                 "tag": "dns_direct",
-                "type": "dns",
-                "address": "223.5.5.5",
-                "detour": "DIRECT"
+                "type": "udp",
+                "server": "223.5.5.5"
             },
             {
                 "tag": "dns_proxy",
-                "type": "dns",
-                "address": "tls://8.8.8.8",
-                "detour": "PROXY"
+                "type": "https",
+                "server": "dns.google",
+
             }
         ],
         "rules": [
