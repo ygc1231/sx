@@ -23,7 +23,7 @@
             "type": "tun",
             "tag": "tun-in",
             "address": "172.18.0.1/30",
-            "mtu": 9000,
+            "mtu": 1400,
             "auto_route": true,
             "auto_redirect": true,
             "strict_route": true,
@@ -65,7 +65,7 @@
             }
         ],
         "final": "foreign",
-        "strategy": "ipv4_only",
+        "strategy": "prefer_ipv4",
         "independent_cache": true,
         "reverse_mapping": true
     },
@@ -101,8 +101,10 @@
                 }
             ],
             "url": "http://www.gstatic.com/generate_204",
-            "interval": "10m",
-            "tolerance": 50
+            "interval": "5m",
+            "tolerance": 50,
+            "idle_timeout": "30m",
+            "interrupt_exist_connections": false
         },
         {
             "tag": "🎯 全球直连",
@@ -164,8 +166,6 @@
                     "geosite-tiktok",
                     "geosite-netflix",
                     "geoip-netflix",
-                    "geosite-apple",
-                    "geoip-apple",
                     "geosite-onedrive",
                     "geosite-microsoft",
                     "geosite-!cn",
@@ -313,7 +313,7 @@
                 "tag": "geoip-cn",
                 "type": "remote",
                 "format": "binary",
-                "url": "https://gh-proxy.com/https://github.com/qljsyph/ruleset-icon/raw/refs/heads/main/sing-box/geoip/China-ASN-combined-ip.srs",
+                "url": "https://gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geoip/cn.srs",
                 "download_detour": "🎯 全球直连"
             }
         ],
