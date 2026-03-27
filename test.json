@@ -107,6 +107,13 @@
             "interrupt_exist_connections": false
         },
         {
+            "tag": "GLOBAL",
+            "type": "selector",
+            "outbounds": [
+                "{all}"
+            ]
+        },
+        {
             "tag": "🎯 全球直连",
             "type": "direct"
         }
