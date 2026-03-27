@@ -56,6 +56,10 @@
                 "server": "local"
             },
             {
+                "clash_mode": "global",
+                "server": "foreign"
+            },
+            {
                 "rule_set": [
                     "geosite-cn",
                     "geosite-steamcn",
@@ -146,6 +150,14 @@
                 "action": "hijack-dns"
             },
             {
+                "clash_mode": "direct",
+                "outbound": "🎯 全球直连"
+            },
+            {
+                "clash_mode": "global",
+                "outbound": "GLOBAL"
+            },
+            {
                 "rule_set": [
                     "geoip-cn",
                     "geosite-cn"
@@ -179,14 +191,6 @@
                     "geosite-steam"
                 ],
                 "outbound": "🍀 Google"
-            },
-            {
-                "clash_mode": "direct",
-                "outbound": "🎯 全球直连"
-            },
-            {
-                "clash_mode": "global",
-                "outbound": "♻️ 自动选择"
             }
         ],
         "rule_set": [
