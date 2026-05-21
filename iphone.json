@@ -14,20 +14,20 @@
     ],
     "outbounds": [
         {
-            "tag": "proxy",
+            "tag": "🍀 Google",
             "type": "selector",
-            "outbounds": ["auto", "direct"]
+            "outbounds": ["♻️ 自动选择", "🎯 全球直连"]
         },
         {
-            "tag": "auto",
+            "tag": "♻️ 自动选择",
             "type": "urltest",
-            "outbounds": "{all}",
+            "outbounds": "all",
             "url": "http://www.gstatic.com/generate_204",
             "interval": "10m"
         },
         {
-            "tag": "direct",
-            "type": "direct"
+            "tag": "🎯 全球直连",
+            "type": "🎯 全球直连"
         }
     ],
     "dns": {
@@ -37,7 +37,7 @@
         ],
         "rules": [
             {
-                "clash_mode": "direct",
+                "clash_mode": "🎯 全球直连",
                 "server": "local"
             }
         ],
@@ -57,11 +57,11 @@
             },
             {
                 "ip_is_private": true,
-                "outbound": "direct"
+                "outbound": "🎯 全球直连"
             },
             {
                 "rule_set": ["geosite-cn", "geoip-cn"],
-                "outbound": "direct"
+                "outbound": "🎯 全球直连"
             }
         ],
         "rule_set": [
@@ -70,14 +70,14 @@
                 "type": "remote",
                 "format": "binary",
                 "url": "https://gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/cn.srs",
-                "download_detour": "direct"
+                "download_detour": "🎯 全球直连"
             },
             {
                 "tag": "geoip-cn",
                 "type": "remote",
                 "format": "binary",
                 "url": "https://gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geoip/cn.srs",
-                "download_detour": "direct"
+                "download_detour": "🎯 全球直连"
             }
         ],
         "final": "proxy"
