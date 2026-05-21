@@ -27,19 +27,13 @@
         },
         {
             "tag": "🎯 全球直连",
-            "type": "🎯 全球直连"
+            "type": "direct"
         }
     ],
     "dns": {
         "servers": [
             {"tag": "local", "address": "223.5.5.5"},
             {"tag": "remote", "address": "8.8.8.8"}
-        ],
-        "rules": [
-            {
-                "clash_mode": "🎯 全球直连",
-                "server": "local"
-            }
         ],
         "final": "remote",
         "strategy": "ipv4_only"
