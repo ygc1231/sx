@@ -96,14 +96,6 @@
             "outbounds": [
                 "{all}"
             ],
-            "filter": [
-                {
-                    "action": "exclude",
-                    "keywords": [
-                        "网|址|余|期|间|效"
-                    ]
-                }
-            ],
             "url": "http://www.gstatic.com/generate_204",
             "interval": "5m",
             "tolerance": 50,
