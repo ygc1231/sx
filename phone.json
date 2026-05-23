@@ -34,14 +34,13 @@
             },
             {
                 "rule_set": [
-                    "geosite-cn",
-                    "geosite-apple"
+                    "geosite-cn"
                 ],
                 "server": "local"
             }
         ],
         "final": "foreign",
-        "strategy": "ipv4_only",
+        "strategy": "prefer_ipv4",
         "independent_cache": true,
         "reverse_mapping": true
     },
@@ -108,15 +107,6 @@
                 "rule_set": [
                     "geoip-cn",
                     "geosite-cn"
-                ],
-                "ip_cidr": [
-                    "10.0.0.0/8",
-                    "172.16.0.0/12",
-                    "192.168.0.0/16"
-                ],
-                "domain_keyword": [
-                    "baidu.com",
-                    "bilibili.com"
                 ],
                 "outbound": "🎯 全球直连"
             },
